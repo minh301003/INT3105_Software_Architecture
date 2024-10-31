@@ -1,4 +1,4 @@
-version: '0'
+version: '3.8'
 
 services: 
   gold-api:
@@ -11,6 +11,8 @@ services:
     environment:
       - API_TYPE=gold  
     restart: 'on-failure'
+    volumes:
+      - .\index.js:/app/index.js
 
   currency-api: 
     container_name: currency-apis
@@ -22,6 +24,8 @@ services:
     environment:
       - API_TYPE=currency 
     restart: 'on-failure'
+    volumes:
+      - .\index.js:/app/index.js
 
   prometheus:
     image: prom/prometheus:latest

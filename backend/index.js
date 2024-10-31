@@ -65,7 +65,7 @@ app.get('/health/gold', async (req, res) => {
 });
 
 // Health Endpoint cho API quy đổi ngoại tệ
-app.get('/health/currency', async (req, res) => {
+app.get('/health/currency1', async (req, res) => {
   try {
     const response = await axios.get('https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=10');
     if (response.status === 200) {
