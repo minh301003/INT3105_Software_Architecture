@@ -19,6 +19,7 @@ if (apiType === 'gold') {
       const response = await axios.get('http://api.btmc.vn/api/BTMCAPI/getpricebtmc?key=3kd8ub1llcg9t45hnoh8hmn7t5kc2v');
       const goldData = response.data;
       res.json(goldData);
+      console.log("Gold api called sucessfully");
     } catch (error) {
       console.error(error);
       res.status(500).send('Error in api gold');
@@ -38,6 +39,7 @@ if (apiType === 'currency') {
           throw err;
         }
         res.json(result);
+        console.log("Currency api called sucessfully");
       });
     } catch (error) {
       console.error(error);
@@ -53,6 +55,7 @@ app.get('/health/gold', async (req, res) => {
     if (response.status === 200) {
       healthGauge.set({ service: 'Gold API' }, 1); 
       res.status(200).json({ service: 'Gold API', status: 'UP' });
+      console.log("gold up")
     } else {
       healthGauge.set({ service: 'Gold API' }, 0); 
       res.status(500).json({ service: 'Gold API', status: 'DOWN' });
@@ -65,12 +68,13 @@ app.get('/health/gold', async (req, res) => {
 });
 
 // Health Endpoint cho API quy đổi ngoại tệ
-app.get('/health/currency1', async (req, res) => {
+app.get('/health/currency', async (req, res) => {
   try {
     const response = await axios.get('https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=10');
     if (response.status === 200) {
       healthGauge.set({ service: 'Currency API' }, 1); 
       res.status(200).json({ service: 'Currency API', status: 'UP' });
+      console.log("currency up")
     } else {
       healthGauge.set({ service: 'Currency API' }, 0); 
       res.status(500).json({ service: 'Currency API', status: 'DOWN' });

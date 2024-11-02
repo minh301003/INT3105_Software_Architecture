@@ -27,14 +27,29 @@ services:
     volumes:
       - .\index.js:/app/index.js
 
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
-    restart: always
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    restart: 'on-failure'
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./prometheus:/etc/prometheus
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+    ports:
+      - 8080:8080
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: 'on-failure'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./prometheus/prometheus.yml:/etc/prometheus.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
