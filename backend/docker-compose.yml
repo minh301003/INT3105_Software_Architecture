@@ -12,7 +12,7 @@ services:
       - API_TYPE=gold  
     restart: 'on-failure'
     volumes:
-      - .\index.js:/app/index.js
+      - ./index.js:/app/index.js
 
   currency-api: 
     container_name: currency-apis
@@ -25,7 +25,7 @@ services:
       - API_TYPE=currency 
     restart: 'on-failure'
     volumes:
-      - .\index.js:/app/index.js
+      - ./index.js:/app/index.js
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest

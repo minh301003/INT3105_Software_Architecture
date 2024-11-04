@@ -6,10 +6,8 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY index.js index.js
+COPY . .
 
 ENV PORT=3002
 
-EXPOSE 3002
-
-CMD [ "npm", "start" ]
+CMD ["npm", "start"]
