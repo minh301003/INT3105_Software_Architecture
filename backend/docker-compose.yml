@@ -22,7 +22,7 @@ services:
     ports:
       - "6002:3002"  
     environment:
-      - API_TYPE=currency 
+      - API_TYPE=currency
     restart: 'on-failure'
     volumes:
       - ./index.js:/app/index.js
@@ -47,10 +47,26 @@ services:
     container_name: prometheus
     restart: 'on-failure'
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - ./prometheus/prometheus.yml:/etc/prometheus.yml
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
       - '9090:9090'
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/data:/var/lib/grafana
+    user: "1000"
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+  
+  
