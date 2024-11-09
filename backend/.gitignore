@@ -31,20 +31,14 @@ coverage/
 .idea/
 
 # Docker related files
-docker-compose.yml
-Dockerfile
+docker-compose.override.yml
+
+# Grafana generated contents
+grafana/data/
+grafana/log/
+grafana/plugins/
+grafana/conf/provisioning/
 
 # Temporary files
 tmp/
 temp/
-
-# Ignore frontend build artifacts
-frontend/build/
-frontend/node_modules/
-
-# Ignore backend build artifacts
-backend/build/
-backend/node_modules/
-
-# Ignore specific files in the backend
-backend/index.js
