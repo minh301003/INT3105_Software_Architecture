@@ -37,7 +37,6 @@ docker-compose.override.yml
 grafana/data/
 grafana/log/
 grafana/plugins/
-grafana/conf/provisioning/
 
 # Temporary files
 tmp/
