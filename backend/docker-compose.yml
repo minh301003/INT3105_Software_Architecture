@@ -15,7 +15,7 @@ services:
       - ./index.js:/app/index.js
 
   currency-api: 
-    container_name: currency-apis
+    container_name: currency-api
     build: 
       context: .
       dockerfile: ./Dockerfile
@@ -47,6 +47,8 @@ services:
     container_name: prometheus
     restart: 'on-failure'
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'

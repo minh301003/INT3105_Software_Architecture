@@ -17,7 +17,7 @@ const CurrencyList = () => {
     useEffect(() => {
       (async () => {
         try {
-          const response = await fetch("http://localhost:3002/api/currency"); 
+          const response = await fetch("http://localhost:6002/api/currency"); 
           const data = await response.json();
 
           const dateTime = data.ExrateList.DateTime[0];

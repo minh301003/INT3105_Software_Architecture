@@ -1,0 +1,50 @@
+# Node.js dependencies
+node_modules/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build directories
+build/
+dist/
+
+# Coverage directory used by testing tools
+coverage/
+
+# Miscellaneous files
+.DS_Store
+
+# Git directory
+.git
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Docker related files
+docker-compose.yml
+Dockerfile
+
+# Temporary files
+tmp/
+temp/
+
+# Ignore frontend build artifacts
+frontend/build/
+frontend/node_modules/
+
+# Ignore backend build artifacts
+backend/build/
+backend/node_modules/
+
+# Ignore specific files in the backend
+backend/index.js

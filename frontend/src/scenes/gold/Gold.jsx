@@ -29,7 +29,7 @@ const GoldList = () => {
     useEffect(() => {
       (async () => {
         try {
-          const response = await fetch("http://localhost:3002/api/gold"); 
+          const response = await fetch("http://localhost:6001/api/gold"); 
           const data = await response.json();
           var renamedData = renameKeys(data)
           const formattedData = renamedData.map(item => ({
