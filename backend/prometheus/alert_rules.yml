@@ -21,7 +21,7 @@ groups:
     - alert: container_gold_not_running
       expr: |
         time() - container_last_seen{name="gold-api"} > 16
-      for: 1m
+      for: 1s
       labels:
         severity: critical
       annotations:
@@ -30,7 +30,7 @@ groups:
     - alert: container_currency_not_running
       expr: |
         time() - container_last_seen{name="currency-api"} > 16
-      for: 1m
+      for: 1s
       labels:
         severity: critical
       annotations:

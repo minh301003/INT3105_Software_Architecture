@@ -20,6 +20,21 @@ const serviceStatusGauge = new client.Gauge({
 });
 register.registerMetric(serviceStatusGauge);
 
+const httpRequestCounter = new client.Counter({
+  name: 'http_requests_total',
+  help: 'Total number of HTTP requests',
+  labelNames: ['method', 'route', 'status_code']
+});
+register.registerMetric(httpRequestCounter);
+
+// Middleware để đếm số lượng yêu cầu
+app.use((req, res, next) => {
+  res.on('finish', () => {
+    httpRequestCounter.inc({ method: req.method, route: req.path, status_code: res.statusCode });
+  });
+  next();
+});
+
 // Endpoint API for gold prices
 if (apiType === 'gold') {
   app.get('/api/gold', async (req, res) => {
