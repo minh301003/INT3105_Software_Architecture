@@ -73,8 +73,8 @@ The architecture is designed to:
 
 1. Clone this repository:
    ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone https://github.com/minh301003/INT3105_Software_Architecture.git
+   cd backend
 2. Start the Docker Compose stack:
     ```bash
    docker-compose up --build
