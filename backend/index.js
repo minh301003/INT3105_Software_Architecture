@@ -114,6 +114,7 @@ let goldApiStatus = 0; // Biến lưu trạng thái của Gold API
 let currencyApiStatus = 0; // Biến lưu trạng thái của Currency API
 
 let currencyApiTimeoutCount = 0; // Biến đếm số lần timeout của Currency API
+let goldApiTimeoutCount = 0; // Biến đếm số lần timeout của Gold API
 
 // Thực hiện health check định kỳ mỗi 30s
 setInterval(async () => {
@@ -123,7 +124,10 @@ setInterval(async () => {
       const goldApiResponse = await axios.get('http://localhost:3002/health/gold', { timeout: 15000 });
       goldApiStatus = goldApiResponse.status === 200 ? 1 : 0; // Cập nhật trạng thái Gold API
     } catch (error) {
-      goldApiStatus = 0; // Nếu có lỗi, đánh dấu Gold API down
+      goldApiTimeoutCount++; 
+      if (goldApiTimeoutCount >= 2) {
+        goldApiTimeoutCount = 0; // !Quá 2 lần timeout liên tiếp thì coi như Down
+      }
     }
   }
   if (apiType === 'currency') {
@@ -139,7 +143,7 @@ setInterval(async () => {
       }
     }
   }
-}, 20000); // Health check mỗi 20s
+}, 30000); // Health check mỗi 30s
 
 // Metrics endpoint cho Prometheus
 app.get('/metrics', async (req, res) => {
