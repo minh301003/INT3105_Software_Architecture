@@ -84,7 +84,6 @@ if (apiType === 'currency') {
   });
 }
 
-
 // Health check endpoints
 if (apiType === 'gold') {
   app.get('/health/gold', async (req, res) => {
