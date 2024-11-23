@@ -34,9 +34,6 @@ coverage/
 docker-compose.override.yml
 
 # Grafana generated contents
-grafana/data/
-grafana/log/
-grafana/plugins/
 
 # Temporary files
 tmp/
