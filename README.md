@@ -119,14 +119,6 @@ Update `alertmanager.yml` and `prometheus.yml` as needed:
 - **Leader**: Chung Hoàng Minh
 - Lê Văn Khoa
 - Đinh Trung Kiên
-
-### Contribution Steps
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature-name`.
-3. Commit your changes: `git commit -m "Feature description"`.
-4. Push to your branch: `git push origin feature-name`.
-5. Create a pull request.
-
 ---
 
 ## License
