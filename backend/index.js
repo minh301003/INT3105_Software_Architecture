@@ -120,7 +120,7 @@ setInterval(async () => {
   if (apiType === 'gold') {
     try {
       // Kiểm tra trạng thái của Gold API
-      const goldApiResponse = await axios.get('http://localhost:3002/health/gold', { timeout: 15000 });
+      const goldApiResponse = await axios.get('52.62.131.103:3002/health/gold', { timeout: 15000 });
       goldApiStatus = goldApiResponse.status === 200 ? 1 : 0; // Cập nhật trạng thái Gold API
     } catch (error) {
       goldApiTimeoutCount++; 
@@ -132,7 +132,7 @@ setInterval(async () => {
   if (apiType === 'currency') {
     // Kiểm tra trạng thái của Currency API
     try {
-      const currencyApiResponse = await axios.get('http://localhost:3002/health/currency', { timeout: 15000 });
+      const currencyApiResponse = await axios.get('52.62.131.103:3002/health/currency', { timeout: 15000 });
       currencyApiStatus = currencyApiResponse.status === 200 ? 1 : 0; // Cập nhật trạng thái Currency API
       currencyApiTimeoutCount = 0; // Reset biến đếm timeout
     } catch (error) {
