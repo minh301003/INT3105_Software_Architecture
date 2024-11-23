@@ -1,6 +1,6 @@
 groups:
 - name: api_alerts
-  interval: 1s
+  interval: 15s
   rules:
     - alert: gold_api_down
       expr: up{instance="gold-api:3002", job="gold-api"} == 0
@@ -20,8 +20,8 @@ groups:
         description: "The Currency API has been down."
     - alert: container_gold_not_running
       expr: |
-        time() - container_last_seen{name="gold-api"} > 16
-      for: 1m
+        time() - container_last_seen{name="gold-api"} > 11
+      for: 1s
       labels:
         severity: critical
       annotations:
@@ -29,8 +29,8 @@ groups:
         description: 'container gold is down'
     - alert: container_currency_not_running
       expr: |
-        time() - container_last_seen{name="currency-api"} > 16
-      for: 1m
+        time() - container_last_seen{name="currency-api"} > 11
+      for: 1s
       labels:
         severity: critical
       annotations:
